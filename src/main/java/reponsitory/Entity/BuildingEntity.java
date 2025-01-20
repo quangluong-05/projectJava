@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.sql.Date;
 
 public class BuildingEntity {
+	private Long id;
 	private String name;
 	private String street;
 	private String ward;
@@ -36,6 +37,13 @@ public class BuildingEntity {
 	private String modifiedBy;
 	private String managerName;
 	private String managerPhoneNumber;
+	
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
 	public String getName() {
 		return name;
 	}

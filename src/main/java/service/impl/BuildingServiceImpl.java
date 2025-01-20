@@ -1,62 +1,48 @@
 package service.impl;
 import java.math.BigDecimal;
+
 import java.nio.channels.Pipe.SourceChannel;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
+import javax.swing.text.html.parser.Entity;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.Mapping;
 
 import Model.BuildingResponseDTO;
+import convertor.BuildingDTOConvertor;
 import reponsitory.BuildingReponsitory;
+import reponsitory.DistrictReponsitory;
+import reponsitory.RentAreaReponsitory;
 import reponsitory.Entity.BuildingEntity;
+import reponsitory.Entity.DistrictEntity;
+import reponsitory.Entity.RentAreaEntity;
 import reponsitory.impl.BuildingReponsitoryImpl;
 import service.BuildingService;
 
 @Service
 public class BuildingServiceImpl implements BuildingService{
         @Autowired
-        private BuildingReponsitory buildingDAO;
-		@Override
-		public List<BuildingResponseDTO> searchBuildings(String name, String street, String ward, Long districtId,
-                Integer numberOfBasement, String managerName, String managerPhoneNumber,
-                Integer floorArea, String direction, String level,Double areafrom, Double areato, Double rentpricefrom, Double rentpriceto, Integer staffincharge){
-			List<BuildingResponseDTO> lsBuildingResponse = new ArrayList<BuildingResponseDTO>();
-			List<BuildingEntity> lsbuildingEntities = buildingDAO.searchBuildings(name, street, ward, districtId,
-                  numberOfBasement, managerName, managerPhoneNumber,
-                  floorArea,direction, level,areafrom, areato, rentpricefrom, rentpriceto, staffincharge);
-			try {
-				if(!lsbuildingEntities.isEmpty() || lsbuildingEntities !=null) {
-					for(BuildingEntity entity: lsbuildingEntities ) {
-						BuildingResponseDTO response = new BuildingResponseDTO();
-						List<Object> lsaddress = new ArrayList<Object>();
-						response.setProductName(entity.getName());
-						lsaddress.add(entity.getStreet());
-						lsaddress.add(entity.getWard());
-						lsaddress.add(entity.getDistrictId());
-						response.setAddress(lsaddress);
-						response.setBasementNumber(entity.getNumberOfBasement());
-						response.setManagerName(entity.getManagerName());
-						response.setPhoneNumber(entity.getManagerPhoneNumber());
-						response.setFloorArea(entity.getFloorArea());
-						response.setVacantArea(" ");
-						response.setRentalArea(entity.getRentPriceDescription());
-						response.setRentalPrice(entity.getRentPrice());
-						response.setServiceCharge(entity.getServiceFee());
-						response.setMcFee(entity.getBrokerageFee());		    
-						lsBuildingResponse.add(response);
-					}
-					return lsBuildingResponse;
-				}else {
-					System.out.println("null mẹ mày rồi");
+        private BuildingReponsitory buildingReponsitory;
+        @Autowired
+        private BuildingDTOConvertor buildingDTOConvertor;
+        public List<BuildingResponseDTO> searchBuildings(Map<String, Object> params, List<String> typcode) {
+			List<BuildingEntity> lsEntity = buildingReponsitory.searchBuildings(params, typcode);
+			List<BuildingResponseDTO> lsBuildingDTO = new ArrayList<BuildingResponseDTO>();
+			if(!lsEntity.isEmpty()&& lsEntity!=null) {
+				for(BuildingEntity item : lsEntity) {
+					BuildingResponseDTO buildingDTO = buildingDTOConvertor.toBuildingDTO(item);
+                    
+					lsBuildingDTO.add(buildingDTO);
 				}
-			} catch (Exception e) {
-				e.printStackTrace();
-				System.out.println("lỗi rồi");
-				return null;
+			}else {
+				System.out.println("kết quả hiện có là null");
 			}
-            return lsBuildingResponse.isEmpty() ? null : lsBuildingResponse;
+			return lsBuildingDTO;
 		}
 
 }

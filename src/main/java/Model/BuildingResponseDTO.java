@@ -1,37 +1,41 @@
 package Model;
 
 import java.math.BigDecimal;
+import java.security.KeyStore.PrivateKeyEntry;
+import java.security.spec.DSAPrivateKeySpec;
 import java.util.List;
 
+import org.springframework.core.type.filter.AbstractClassTestingTypeFilter;
+
 public class BuildingResponseDTO {
-	private String productName;
-	private List<Object> address;
-	private Integer basementNumber;
+	private String name;
+	private String address;
+	private String rentArea;
 	private String managerName;
-	private String phoneNumber;
-	private Integer floorArea;
-	private String vacantArea;
-	private String rentalArea;
-	private Integer rentalPrice;
-	private String serviceCharge;
-	private BigDecimal mcFee;
-	public String getProductName() {
-		return productName;
+	private String managerPhoneNumber;
+	private Long floorArea;
+	private String emptyArea;
+	private String rentPrice;
+	private String serviceFee;
+	private Long brokerageFee;
+	public String getName() {
+		return name;
 	}
-	public void setProductName(String productName) {
-		this.productName = productName;
+	public void setName(String name) {
+		this.name = name;
 	}
-	public List<Object> getAddress() {
+	public String getAddress() {
 		return address;
 	}
-	public void setAddress(List<Object> lsaddress) {
-		this.address = lsaddress;
+	public void setAddress(String address) {
+		this.address = address;
 	}
-	public Integer getBasementNumber() {
-		return basementNumber;
+	
+	public String getRentArea() {
+		return rentArea;
 	}
-	public void setBasementNumber(Integer basementNumber) {
-		this.basementNumber = basementNumber;
+	public void setRentArea(String rentArea) {
+		this.rentArea = rentArea;
 	}
 	public String getManagerName() {
 		return managerName;
@@ -39,47 +43,41 @@ public class BuildingResponseDTO {
 	public void setManagerName(String managerName) {
 		this.managerName = managerName;
 	}
-	public String getPhoneNumber() {
-		return phoneNumber;
+	public String getManagerPhoneNumber() {
+		return managerPhoneNumber;
 	}
-	public void setPhoneNumber(String phoneNumber) {
-		this.phoneNumber = phoneNumber;
+	public void setManagerPhoneNumber(String managerPhoneNumber) {
+		this.managerPhoneNumber = managerPhoneNumber;
 	}
-	public Integer getFloorArea() {
+	public Long getFloorArea() {
 		return floorArea;
 	}
-	public void setFloorArea(Integer floorArea) {
+	public void setFloorArea(Long floorArea) {
 		this.floorArea = floorArea;
 	}
-	public String getVacantArea() {
-		return vacantArea;
+	public String getEmptyArea() {
+		return emptyArea;
 	}
-	public void setVacantArea(String vacantArea) {
-		this.vacantArea = vacantArea;
+	public void setEmptyArea(String emptyArea) {
+		this.emptyArea = emptyArea;
 	}
-	public String getRentalArea() {
-		return rentalArea;
+	public String getRentPrice() {
+		return rentPrice;
 	}
-	public void setRentalArea(String rentalArea) {
-		this.rentalArea = rentalArea;
+	public void setRentPrice(String rentPrice) {
+		this.rentPrice = rentPrice;
 	}
-	public Integer getRentalPrice() {
-		return rentalPrice;
+	public String getServiceFee() {
+		return serviceFee;
 	}
-	public void setRentalPrice(Integer rentalPrice) {
-		this.rentalPrice = rentalPrice;
+	public void setServiceFee(String serviceFee) {
+		this.serviceFee = serviceFee;
 	}
-	public String getServiceCharge() {
-		return serviceCharge;
+	public Long getBrokerageFee() {
+		return brokerageFee;
 	}
-	public void setServiceCharge(String serviceCharge) {
-		this.serviceCharge = serviceCharge;
-	}
-	public BigDecimal getMcFee() {
-		return mcFee;
-	}
-	public void setMcFee(BigDecimal mcFee) {
-		this.mcFee = mcFee;
+	public void setBrokerageFee(Long brokerageFee) {
+		this.brokerageFee = brokerageFee;
 	}
 	
 }
