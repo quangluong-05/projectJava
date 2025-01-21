@@ -14,7 +14,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.Mapping;
 
 import Model.BuildingResponseDTO;
+import builder.buildingSearchBuilder;
 import convertor.BuildingDTOConvertor;
+import convertor.BuildingSearchBuilderConvertor;
 import reponsitory.BuildingReponsitory;
 import reponsitory.DistrictReponsitory;
 import reponsitory.RentAreaReponsitory;
@@ -30,8 +32,13 @@ public class BuildingServiceImpl implements BuildingService{
         private BuildingReponsitory buildingReponsitory;
         @Autowired
         private BuildingDTOConvertor buildingDTOConvertor;
-        public List<BuildingResponseDTO> searchBuildings(Map<String, Object> params, List<String> typcode) {
-			List<BuildingEntity> lsEntity = buildingReponsitory.searchBuildings(params, typcode);
+        @Autowired 
+        private BuildingSearchBuilderConvertor buildingSearchBuilderConvertor;
+     
+        public List<BuildingResponseDTO> searchBuildings(Map<String, Object> params, List<String> typecode) {
+        	buildingSearchBuilder buildingsearchbuilder = buildingSearchBuilderConvertor.toBuildingSeachBuilder(params, typecode);
+      
+        	List<BuildingEntity> lsEntity = buildingReponsitory.searchBuildings(buildingsearchbuilder);
 			List<BuildingResponseDTO> lsBuildingDTO = new ArrayList<BuildingResponseDTO>();
 			if(!lsEntity.isEmpty()&& lsEntity!=null) {
 				for(BuildingEntity item : lsEntity) {
