@@ -24,7 +24,7 @@ public class BuildingAPI {
 
     @GetMapping("/search")
     public List<BuildingResponseDTO> search(@RequestParam Map<String,Object> params,
-    		                                @RequestParam(name = "typecode") List<String> typecode){
+    		                                @RequestParam(name = "typecode", required = false) List<String> typecode){
     	List<BuildingResponseDTO> result = buildingService.searchBuildings(params, typecode);
     	return result;
     }
