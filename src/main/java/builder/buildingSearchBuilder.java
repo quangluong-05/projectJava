@@ -1,12 +1,7 @@
 package builder;
-
-import java.security.PublicKey;
 import java.util.ArrayList;
 import java.util.List;
-
-import org.modelmapper.internal.bytebuddy.asm.Advice.OffsetMapping.ForOrigin.Renderer.ForReturnTypeName;
-
-public class buildingSearchBuilder {
+public class BuildingSearchBuilder {
 	private String name;
 	private Long floorArea;
 	private String ward;
@@ -21,7 +16,7 @@ public class buildingSearchBuilder {
 	private Long areaFrom;
 	private Long areaTo;
 	private Long staffId;
-	private buildingSearchBuilder(Builder builder) {
+	private BuildingSearchBuilder(Builder builder) {
 		this.name = builder.name;
 		this.floorArea =  builder.floorArea;
 		this.ward =  builder.ward;
@@ -163,8 +158,8 @@ public class buildingSearchBuilder {
 	        this.staffId = staffId;
 	        return this;
 	    }
-	    public buildingSearchBuilder build() {
-	    	return new buildingSearchBuilder(this);
+	    public BuildingSearchBuilder build() {
+	    	return new BuildingSearchBuilder(this);
 	    }
 	}
 }

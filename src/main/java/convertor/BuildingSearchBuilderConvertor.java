@@ -6,11 +6,11 @@ import java.util.Map;
 import org.springframework.stereotype.Component;
 
 import Utils.MapUtil;
-import builder.buildingSearchBuilder;
+import builder.BuildingSearchBuilder;
 @Component
 public class BuildingSearchBuilderConvertor {
-	public buildingSearchBuilder toBuildingSeachBuilder(Map<String, Object> params, List<String> typeCode) {
-		buildingSearchBuilder buildingsearchbuilder = new buildingSearchBuilder.Builder()
+	public BuildingSearchBuilder toBuildingSeachBuilder(Map<String, Object> params, List<String> typeCode) {
+		BuildingSearchBuilder buildingsearchbuilder = new BuildingSearchBuilder.Builder()
 																				.setName(MapUtil.getObject(params, "name", String.class))
 																		        .setFloorArea(MapUtil.getObject(params, "floorArea", Long.class))
 																		        .setWard(MapUtil.getObject(params, "ward", null))

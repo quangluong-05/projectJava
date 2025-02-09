@@ -18,5 +18,4 @@ public class ErrorReponseDTO {
 	public void setDetail(List<String> detail) {
 		this.detail = detail;
 	}
-	
 }

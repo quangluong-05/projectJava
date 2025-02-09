@@ -8,5 +8,5 @@ import Model.BuildingResponseDTO;
 
 public interface BuildingService {
 
-	 List<BuildingResponseDTO> searchBuildings(Map<String, Object> params, List<String> typecode);
+	 List<BuildingResponseDTO> searchbuilding(Map<String, Object> params, List<String> typecode);
 }
