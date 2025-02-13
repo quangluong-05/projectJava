@@ -1,1 +1,2 @@
-cơ sở dữ liệu
+
+https://checkout.stripe.com/
