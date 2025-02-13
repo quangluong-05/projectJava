@@ -31,7 +31,6 @@ public class DistrictReponsitoryimpl implements DistrictReponsitory{
 			 e.printStackTrace();
 		 }
 		 return district;
-
 	}
 
 }

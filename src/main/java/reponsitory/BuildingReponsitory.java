@@ -7,6 +7,6 @@ import java.util.Map;
 import reponsitory.Entity.BuildingEntity;
 
 public interface BuildingReponsitory {
-	List<BuildingEntity> searchBuildings(Map<String , Object> params, List<String> typecoe);
+	List<BuildingEntity> searchBuildings(Map<String , Object> params, List<String> typecode);
 	
 }
